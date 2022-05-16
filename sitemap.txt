@@ -1,12 +1,13 @@
+https://zongweibai.github.io/posts/a0ddf6ec/
 https://zongweibai.github.io/statistical/index.html
 https://zongweibai.github.io/changes/index.html
 https://zongweibai.github.io/favorites/index.html
 https://zongweibai.github.io/link/index.html
 https://zongweibai.github.io/about/index.html
-https://zongweibai.github.io/2022/05/16/hello-world/
 https://zongweibai.github.io/categories/index.html
 https://zongweibai.github.io/tags/index.html
 https://zongweibai.github.io/
-https://zongweibai.github.io/tags/Arthas/
-https://zongweibai.github.io/categories/Java-DevOps/
-https://zongweibai.github.io/categories/Java-DevOps/Arthas/
+https://zongweibai.github.io/tags/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/
+https://zongweibai.github.io/tags/%E5%9B%BD%E5%AF%86/
+https://zongweibai.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/
+https://zongweibai.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%9B%BD%E5%AF%86/

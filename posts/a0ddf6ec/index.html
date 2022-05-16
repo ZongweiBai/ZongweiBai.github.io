@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>国密算法在多语言下的适配 | 小胖吃饭了</title><meta name="keywords" content="加密算法,国密"><meta name="author" content="ZongweiBai,zongwei.bai@gmail.com"><meta name="copyright" content="ZongweiBai"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="开源库本文中用到的加密算法实现开源项目如下： java：https:&#x2F;&#x2F;github.com&#x2F;ZZMarquis&#x2F;gmhelper golang：https:&#x2F;&#x2F;github.com&#x2F;Hyperledger-TWGC&#x2F;ccs-gm js：https:&#x2F;&#x2F;github.com&#x2F;JuneAndGreen&#x2F;sm-crypto SM2SM2的调试较为复杂，需要注意的点有两个：1、密钥对的生成；2、JS加解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="国密算法在多语言下的适配">
+<meta property="og:url" content="https://zongweibai.github.io/posts/a0ddf6ec/index.html">
+<meta property="og:site_name" content="小胖吃饭了">
+<meta property="og:description" content="开源库本文中用到的加密算法实现开源项目如下： java：https:&#x2F;&#x2F;github.com&#x2F;ZZMarquis&#x2F;gmhelper golang：https:&#x2F;&#x2F;github.com&#x2F;Hyperledger-TWGC&#x2F;ccs-gm js：https:&#x2F;&#x2F;github.com&#x2F;JuneAndGreen&#x2F;sm-crypto SM2SM2的调试较为复杂，需要注意的点有两个：1、密钥对的生成；2、JS加解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2022-04-28T07:27:32.889Z">
+<meta property="article:modified_time" content="2022-05-16T11:11:34.428Z">
+<meta property="article:author" content="ZongweiBai">
+<meta property="article:tag" content="加密算法">
+<meta property="article:tag" content="国密">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zongweibai.github.io/posts/a0ddf6ec/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-55XE2CFYWJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-55XE2CFYWJ');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"5AQV5VSNTC","apiKey":"60c03791597f87491daa3c33b2ca4fd2","indexName":"zongweibai.github.io","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '国密算法在多语言下的适配',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-16 19:11:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="小胖吃饭了" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img9.doubanio.com/icon/ul72417058-6.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/favorites/"><i class="fa-fw fas fa-meteor"></i><span> 收藏夹</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-cogs"></i><span> 管理</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/changes/"><i class="fa-fw fas fa-location-arrow"></i><span> 更新日志</span></a></li><li><a class="site-page child" href="/statistical/"><i class="fa-fw fas fa-globe-asia"></i><span> 站点统计</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小胖吃饭了</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/favorites/"><i class="fa-fw fas fa-meteor"></i><span> 收藏夹</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-cogs"></i><span> 管理</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/changes/"><i class="fa-fw fas fa-location-arrow"></i><span> 更新日志</span></a></li><li><a class="site-page child" href="/statistical/"><i class="fa-fw fas fa-globe-asia"></i><span> 站点统计</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">国密算法在多语言下的适配</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-28T07:27:32.889Z" title="发表于 2022-04-28 15:27:32">2022-04-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-16T11:11:34.428Z" title="更新于 2022-05-16 19:11:34">2022-05-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%9B%BD%E5%AF%86/">国密</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span></div></div></div><article class="post-content" id="article-container"><h1 id="开源库"><a href="#开源库" class="headerlink" title="开源库"></a>开源库</h1><p>本文中用到的加密算法实现开源项目如下：</p>
+<p>java：<a target="_blank" rel="noopener" href="https://github.com/ZZMarquis/gmhelper">https://github.com/ZZMarquis/gmhelper</a></p>
+<p>golang：<a target="_blank" rel="noopener" href="https://github.com/Hyperledger-TWGC/ccs-gm">https://github.com/Hyperledger-TWGC/ccs-gm</a></p>
+<p>js：<a target="_blank" rel="noopener" href="https://github.com/JuneAndGreen/sm-crypto">https://github.com/JuneAndGreen/sm-crypto</a></p>
+<h1 id="SM2"><a href="#SM2" class="headerlink" title="SM2"></a>SM2</h1><p>SM2的调试较为复杂，需要注意的点有两个：1、密钥对的生成；2、JS加解密时的特殊处理。</p>
+<h2 id="生成密钥对"><a href="#生成密钥对" class="headerlink" title="生成密钥对"></a>生成密钥对</h2><p>经过测试，只有golang生成的密钥对才能在golang、java和js三端通用，生成方式如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">iniSk, _ := sm2.GenerateKey(rand.Reader)</span><br><span class="line">iniPk := iniSk.PublicKey</span><br><span class="line"></span><br><span class="line">pemSk, err := PrivateKeyToPEM(iniSk, <span class="literal">nil</span>)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    t.Errorf(<span class="string">&quot;private key to pem error %t&quot;</span>, err)</span><br><span class="line">&#125;</span><br><span class="line">fmt.Printf(<span class="string">&quot;pem私钥：%s&quot;</span>, <span class="type">string</span>(pemSk))</span><br><span class="line"></span><br><span class="line">pemPk, err := PublicKeyToPEM(&amp;iniPk, <span class="literal">nil</span>)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    t.Errorf(<span class="string">&quot;public key to pem error %t&quot;</span>, err)</span><br><span class="line">&#125;</span><br><span class="line">fmt.Printf(<span class="string">&quot;pem公钥：%s&quot;</span>, <span class="type">string</span>(pemPk))</span><br></pre></td></tr></table></figure>
+
+<p>生成的PEM密钥可以直接在golang和java中使用，但是js的密钥还需要做一次转换，这里使用Java做转换：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">privatePem</span> <span class="operator">=</span> <span class="string">&quot;这里填上文生成的pem私钥&quot;</span>;</span><br><span class="line"><span class="type">byte</span>[] pkcs8PrivateKey = BCECUtil.convertECPrivateKeyPEMToPKCS8(privatePem);</span><br><span class="line">System.out.println(HexUtil.getHexString(pkcs8PrivateKey));</span><br><span class="line"></span><br><span class="line"><span class="type">BCECPrivateKey</span> <span class="variable">ecpPrivateKey</span> <span class="operator">=</span> BCECUtil.convertPKCS8ToECPrivateKey(pkcs8PrivateKey);</span><br><span class="line"><span class="type">ECPrivateKeyParameters</span> <span class="variable">privateKeyParameters</span> <span class="operator">=</span> BCECUtil.convertPrivateKeyToParameters(ecpPrivateKey);</span><br><span class="line">System.out.println(<span class="string">&quot;JS私钥: &quot;</span> + HexUtil.byteToHex(privateKeyParameters.getD().toByteArray()));</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">publicPem</span> <span class="operator">=</span> <span class="string">&quot;这里填上文生成的pem公钥&quot;</span>;</span><br><span class="line"><span class="type">byte</span>[] x509PublicKey = BCECUtil.convertECPublicKeyPEMToX509(publicPem);</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">publicKey</span> <span class="operator">=</span> HexUtil.getHexString(x509PublicKey);</span><br><span class="line">System.out.println(publicKey);</span><br><span class="line"></span><br><span class="line"><span class="type">BCECPublicKey</span> <span class="variable">bcecPublicKey</span> <span class="operator">=</span> BCECUtil.convertX509ToECPublicKey(x509PublicKey);</span><br><span class="line"><span class="type">ECPublicKeyParameters</span> <span class="variable">publicKeyParameter</span> <span class="operator">=</span> BCECUtil.convertPublicKeyToParameters(bcecPublicKey);</span><br><span class="line">System.out.println(<span class="string">&quot;JS公钥: &quot;</span> + HexUtil.byteToHex(publicKeyParameter.getQ().getEncoded(<span class="literal">false</span>)));</span><br></pre></td></tr></table></figure>
+
+<p>java的算法实现中没有给出 <code>HexUtil</code>的实现，这里贴出我这里的实现：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ZongweiBai/spring-boot-in-action/blob/master/spring-boot-netty-server/src/main/java/com/github/baymin/netty/util/HexUtil.java">HexUtil</a></p>
+<h2 id="golang加解密"><a href="#golang加解密" class="headerlink" title="golang加解密"></a>golang加解密</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 测试sm2的加密和解密</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestEncryptAndDecrypt</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">    pempk := <span class="string">`这里填上文生成的pem公钥`</span></span><br><span class="line">    normalPk, err := utils.PEMtoPublicKey([]<span class="type">byte</span>(pempk), <span class="literal">nil</span>)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(err)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pemSk := <span class="string">`这里填上文生成的pem私钥`</span></span><br><span class="line">    normalSk, err := utils.PEMtoPrivateKey([]<span class="type">byte</span>(pemSk), <span class="literal">nil</span>)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(err)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    msg := []<span class="type">byte</span>(<span class="string">&quot;helloword123123!&quot;</span>)</span><br><span class="line">    <span class="comment">//test encryption</span></span><br><span class="line">    cipher, err := sm2.Encrypt(rand.Reader, normalPk, msg)</span><br><span class="line">    fmt.Println(<span class="string">&quot;===================================================&quot;</span>)</span><br><span class="line">    fmt.Println(<span class="string">&quot;加密后字符串：&quot;</span>, hex.EncodeToString(cipher))</span><br><span class="line"></span><br><span class="line">    fmt.Println(<span class="string">&quot;===================================================&quot;</span>)</span><br><span class="line">    res, err := sm2.Decrypt(cipher, normalSk)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;解密失败:&quot;</span>, err)</span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Println(<span class="string">&quot;解密后字符串：&quot;</span>, <span class="type">string</span>(res))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="java加解密"><a href="#java加解密" class="headerlink" title="java加解密"></a>java加解密</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">publicPem</span> <span class="operator">=</span> <span class="string">&quot;这里填上文生成的pem公钥&quot;</span>;</span><br><span class="line"><span class="type">byte</span>[] x509PublicKey = BCECUtil.convertECPublicKeyPEMToX509(publicPem);</span><br><span class="line"><span class="type">BCECPublicKey</span> <span class="variable">publicKey</span> <span class="operator">=</span> BCECUtil.convertX509ToECPublicKey(x509PublicKey);</span><br><span class="line"><span class="type">byte</span>[] cipherText = SM2Util.encrypt(publicKey, PLAIN_TEXT.getBytes(StandardCharsets.UTF_8));</span><br><span class="line">System.out.println(<span class="string">&quot;加密后密文：&quot;</span>+HexUtil.getHexString(cipherText));</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">privatePem</span> <span class="operator">=</span> <span class="string">&quot;这里填上文生成的pem私钥&quot;</span>;</span><br><span class="line"><span class="type">byte</span>[] pkcs8PrivateKey = BCECUtil.convertECPrivateKeyPEMToPKCS8(privatePem);</span><br><span class="line"><span class="type">BCECPrivateKey</span> <span class="variable">privateKey</span> <span class="operator">=</span> BCECUtil.convertPKCS8ToECPrivateKey(pkcs8PrivateKey);</span><br><span class="line"><span class="type">byte</span>[] plainText = SM2Util.decrypt(privateKey, HexUtil.hexToByte(<span class="string">&quot;这里填加密后密文&quot;</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;解密后明文：&quot;</span>+<span class="keyword">new</span> <span class="title class_">String</span>(plainText));</span><br></pre></td></tr></table></figure>
+
+<h2 id="js加解密"><a href="#js加解密" class="headerlink" title="js加解密"></a>js加解密</h2><blockquote>
+<p>注意：</p>
+<p>JS生成的密文必须加前缀“04”才能被golang和java正确解密</p>
+<p>golang和java生成的密文一定要去除前缀“04”,再将密文全部转为小写字母后方可正确解密</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> sm2 = <span class="built_in">require</span>(<span class="string">&#x27;sm-crypto&#x27;</span>).<span class="property">sm2</span></span><br><span class="line"></span><br><span class="line">encryptData = sm2.<span class="title function_">doEncrypt</span>(msgString, publicKey, cipherMode)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;加密后密文:&#x27;</span>, encryptData)</span><br><span class="line"><span class="comment">// 这里需要注意，js生成的密文需要加前缀&quot;04&quot;后才能被golang和java正确解密</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里需要注意，golang和java生成的密文一定要去除前缀“04”,再将密文全部转为小写字母后方可正确解密</span></span><br><span class="line">encryptData = <span class="string">&#x27;加密后密文&#x27;</span></span><br><span class="line">decryptData = sm2.<span class="title function_">doDecrypt</span>(encryptData, privateKey, cipherMode)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;解密后明文&#x27;</span>, decryptData)</span><br></pre></td></tr></table></figure>
+
+<h1 id="SM3"><a href="#SM3" class="headerlink" title="SM3"></a>SM3</h1><p>SM3的调试比较简单，下面只列出各个语言的调用方法。</p>
+<blockquote>
+<p>每种语言生成的密文会有大小写的差异，实际使用时可以忽略大小写进行对比。</p>
+</blockquote>
+<h2 id="golang加密"><a href="#golang加密" class="headerlink" title="golang加密"></a>golang加密</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestSM3HashWithJava</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">    hash := sm3.New()</span><br><span class="line">    hash.Write([]<span class="type">byte</span>(<span class="string">&quot;helloword!sm3&quot;</span>))</span><br><span class="line">    hashed := hash.Sum(<span class="literal">nil</span>)</span><br><span class="line">    fmt.Println(<span class="string">&quot;SM3加密密文: &quot;</span>, hex.EncodeToString(hashed))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="java加密"><a href="#java加密" class="headerlink" title="java加密"></a>java加密</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testHash</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">byte</span>[] hashed = SM3Util.hash(PLAIN_TEXT.getBytes(StandardCharsets.UTF_8));</span><br><span class="line">    System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(hashed));</span><br><span class="line">    System.out.println(HexUtil.getHexString(hashed));</span><br><span class="line">    SM3Util.verify(PLAIN_TEXT.getBytes(StandardCharsets.UTF_8), hashed);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="js加密"><a href="#js加密" class="headerlink" title="js加密"></a>js加密</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">msgString = <span class="string">&#x27;helloword!sm3&#x27;</span></span><br><span class="line"><span class="keyword">const</span> sm3 = <span class="built_in">require</span>(<span class="string">&#x27;sm-crypto&#x27;</span>).<span class="property">sm3</span></span><br><span class="line">hashData = <span class="title function_">sm3</span>(msgString) <span class="comment">// 杂凑hashData</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;【hashData】&#x27;</span>, hashData)</span><br></pre></td></tr></table></figure>
+
+<h1 id="SM4"><a href="#SM4" class="headerlink" title="SM4"></a>SM4</h1><p>SM4的调试也比较简单，只需要注意key的生成和js加密key的特殊处理</p>
+<h2 id="golang加解密-1"><a href="#golang加解密-1" class="headerlink" title="golang加解密"></a>golang加解密</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestSM4</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">    key := []<span class="type">byte</span>(<span class="string">&quot;0123456789abcdef&quot;</span>)</span><br><span class="line">    msg := []<span class="type">byte</span>(<span class="string">&quot;0123456789abcdef012345678&quot;</span>)</span><br><span class="line">    encMsg, err := sm4.Sm4Ecb(key, msg, sm4.ENC)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        t.Errorf(<span class="string">&quot;sm4 enc error:%s&quot;</span>, err)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Println(<span class="string">&quot;加密后的密文：&quot;</span>, hex.EncodeToString(encMsg))</span><br><span class="line"></span><br><span class="line">    encMsg, err = hex.DecodeString(<span class="string">&quot;13278C63B7305E3C131CDBBBE6F59B86A6B8937FE1E2B336779FE4DB0537E750&quot;</span>)</span><br><span class="line">    dec, err := sm4.Sm4Ecb(key, encMsg, sm4.DEC)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        t.Errorf(<span class="string">&quot;sm4 dec error:%s&quot;</span>, err)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Println(<span class="string">&quot;解密后的明文：&quot;</span>, <span class="type">string</span>(dec))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> !bytes.Equal(msg, dec) &#123;</span><br><span class="line">        t.Errorf(<span class="string">&quot;sm4 self enc and dec failed&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="java加解密-1"><a href="#java加解密-1" class="headerlink" title="java加解密"></a>java加解密</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testECBPadding</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="type">byte</span>[] key = <span class="string">&quot;0123456789abcdef&quot;</span>.getBytes(StandardCharsets.UTF_8);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 这里需要注意，16进制加密key用于js端</span></span><br><span class="line">    System.out.println(<span class="string">&quot;16进制加密key: &quot;</span> + HexUtil.byteToHex(key));</span><br><span class="line">    System.out.println(<span class="string">&quot;加密key: &quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(key));</span><br><span class="line">    <span class="type">byte</span>[] data = <span class="string">&quot;0123456789abcdef012345678&quot;</span>.getBytes(StandardCharsets.UTF_8);</span><br><span class="line"></span><br><span class="line">    <span class="type">byte</span>[] cipherText = SM4Util.encrypt_ECB_Padding(key, data);</span><br><span class="line">    System.out.println(<span class="string">&quot;SM4 ECB Padding encrypt result: &quot;</span> + HexUtil.byteToHex(cipherText));</span><br><span class="line"></span><br><span class="line">    <span class="type">byte</span>[] decryptedData = SM4Util.decrypt_ECB_Padding(key, cipherText);</span><br><span class="line">    System.out.println(<span class="string">&quot;SM4 ECB Padding decrypt result: &quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(decryptedData));</span><br><span class="line">    System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(decryptedData));</span><br><span class="line">    <span class="keyword">if</span> (!Arrays.equals(decryptedData, data)) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;加解密失败&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="js加解密-1"><a href="#js加解密-1" class="headerlink" title="js加解密"></a>js加解密</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> sm4 = <span class="built_in">require</span>(<span class="string">&#x27;sm-crypto&#x27;</span>).<span class="property">sm4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里需要注意，一定要使用上文java测试类中生成的16进制加密key</span></span><br><span class="line">key = <span class="string">&#x27;30313233343536373839616263646566&#x27;</span> </span><br><span class="line">msgString = <span class="string">&#x27;0123456789abcdef012345678&#x27;</span></span><br><span class="line"></span><br><span class="line">encryptData = sm4.<span class="title function_">encrypt</span>(msgString, key) <span class="comment">// 加密，默认输出 16 进制字符串，默认使用 pkcs#5 填充</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;【encryptData】&#x27;</span>, encryptData)</span><br><span class="line">decryptData = sm4.<span class="title function_">decrypt</span>(encryptData, key) <span class="comment">// 解密，默认输出 utf8 字符串，默认使用 pkcs#5 填充</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;【decryptData】&#x27;</span>, decryptData)</span><br></pre></td></tr></table></figure>
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://zongweibai.github.io">ZongweiBai</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zongweibai.github.io/posts/a0ddf6ec/">https://zongweibai.github.io/posts/a0ddf6ec/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zongweibai.github.io" target="_blank">小胖吃饭了</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">加密算法</a><a class="post-meta__tags" href="/tags/%E5%9B%BD%E5%AF%86/">国密</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img9.doubanio.com/icon/ul72417058-6.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ZongweiBai</div><div class="author-info__description">一个不够纯粹的程序员</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ZongweiBai"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ZongweiBai" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:zongwei.bai@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS链接"><i class="fa fa-rss"></i></a><a class="social-icon" href="https://www.cnblogs.com/zongwei" target="_blank" title="cnblogs"><i class="fab fa-cuttlefish flat-btn"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">What we do is what defines us.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">开源库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SM2"><span class="toc-number">2.</span> <span class="toc-text">SM2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9"><span class="toc-number">2.1.</span> <span class="toc-text">生成密钥对</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#golang%E5%8A%A0%E8%A7%A3%E5%AF%86"><span class="toc-number">2.2.</span> <span class="toc-text">golang加解密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java%E5%8A%A0%E8%A7%A3%E5%AF%86"><span class="toc-number">2.3.</span> <span class="toc-text">java加解密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js%E5%8A%A0%E8%A7%A3%E5%AF%86"><span class="toc-number">2.4.</span> <span class="toc-text">js加解密</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SM3"><span class="toc-number">3.</span> <span class="toc-text">SM3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#golang%E5%8A%A0%E5%AF%86"><span class="toc-number">3.1.</span> <span class="toc-text">golang加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java%E5%8A%A0%E5%AF%86"><span class="toc-number">3.2.</span> <span class="toc-text">java加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js%E5%8A%A0%E5%AF%86"><span class="toc-number">3.3.</span> <span class="toc-text">js加密</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SM4"><span class="toc-number">4.</span> <span class="toc-text">SM4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#golang%E5%8A%A0%E8%A7%A3%E5%AF%86-1"><span class="toc-number">4.1.</span> <span class="toc-text">golang加解密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java%E5%8A%A0%E8%A7%A3%E5%AF%86-1"><span class="toc-number">4.2.</span> <span class="toc-text">java加解密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js%E5%8A%A0%E8%A7%A3%E5%AF%86-1"><span class="toc-number">4.3.</span> <span class="toc-text">js加解密</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/a0ddf6ec/" title="国密算法在多语言下的适配">国密算法在多语言下的适配</a><time datetime="2022-04-28T07:27:32.889Z" title="发表于 2022-04-28 15:27:32">2022-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By ZongweiBai</div><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank"href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo"title="博客框架为 Hexo"alt="HEXO"></a><a style="margin-inline:5px"target="_blank"href="https://github.com/jerryc127/hexo-theme-butterfly"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender"title="主题采用 Butterfly"alt="Butterfly"></a><a style="margin-inline:5px"target="_blank"href="https://github.com/ZongweiBai/ZongweiBai.github.io"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub"title="本站项目由 GitHub 托管"alt="GitHub"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris"alt="img"title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">簡</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'ZongweiBai/ZongweiBai.github.io')
+  ele.setAttribute('issue-term', 'title')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  const iframe = document.querySelector('.utterances-frame')
+  if (iframe) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?ZongweiBai";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="ZongweiBai";
+            var parent_div_git = document.getElementById('about-github-calendar');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/about/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('about-github-calendar')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
