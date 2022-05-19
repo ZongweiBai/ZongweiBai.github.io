@@ -6,7 +6,7 @@
   <link href="https://zongweibai.github.io/atom.xml" rel="self"/>
   
   <link href="https://zongweibai.github.io/"/>
-  <updated>2022-05-17T01:30:14.141Z</updated>
+  <updated>2022-05-19T07:13:50.578Z</updated>
   <id>https://zongweibai.github.io/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java并发基础2-原子操作</title>
+    <link href="https://zongweibai.github.io/posts/9a537682/"/>
+    <id>https://zongweibai.github.io/posts/9a537682/</id>
+    <published>2022-05-19T03:18:11.562Z</published>
+    <updated>2022-05-19T07:13:50.578Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;接上文，在并发情况下，使用了&lt;code&gt;volatile&lt;/code&gt;关键字，能否保证多线程情况下结果的准确性？答案是不能，验证如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://zongweibai.github.io/categories/Java/"/>
+    
+    <category term="并发" scheme="https://zongweibai.github.io/categories/Java/%E5%B9%B6%E5%8F%91/"/>
+    
+    
+    <category term="Java" scheme="https://zongweibai.github.io/tags/Java/"/>
+    
+    <category term="并发" scheme="https://zongweibai.github.io/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java并发基础1-指令重排序与JVM内存模型</title>
+    <link href="https://zongweibai.github.io/posts/b8e7f905/"/>
+    <id>https://zongweibai.github.io/posts/b8e7f905/</id>
+    <published>2022-05-18T01:16:06.990Z</published>
+    <updated>2022-05-19T07:13:50.573Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;并发是Java重要的一个知识点，在编码的过程中，经常会遇见这样一种场景：单线程下的代码在多线程下出现了和预期不一样的结果，其中一个原因就是JVM对我们的代码做了指令重排序的优化。&lt;/p&gt;
+&lt;h1 id=&quot;一、指令重排序&quot;&gt;&lt;a href=&quot;#一、指令重排序&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="https://zongweibai.github.io/categories/Java/"/>
+    
+    <category term="并发" scheme="https://zongweibai.github.io/categories/Java/%E5%B9%B6%E5%8F%91/"/>
+    
+    
+    <category term="Java" scheme="https://zongweibai.github.io/tags/Java/"/>
+    
+    <category term="并发" scheme="https://zongweibai.github.io/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title>国密算法在多语言下的适配</title>
